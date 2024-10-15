@@ -1,20 +1,20 @@
 import query from '../../dist/connection.js';
 
 export async function viewEmployees() {
-  const employees = await query(
-    `SELECT employees.id, employees.first_name, employees.last_name, roles.title, departments.name AS department, roles.salary, 
-     employees.manager_id 
-     FROM employees 
-     JOIN roles ON employees.role_id = roles.id 
-     JOIN departments ON roles.department_id = departments.id`,
+  const employee = await query(
+    `SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, 
+     employee.manager_id 
+     FROM employee 
+     JOIN role ON employee.role_id = role.id 
+     JOIN department ON role.department_id = department.id`,
     []
   );
-  console.table(employees);
+  console.table(employee);
 }
 
 export async function addEmployee(firstName, lastName, roleId, managerId) {
   await query(
-    'INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES ($1, $2, $3, $4)',
+    'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ($1, $2, $3, $4)',
     [firstName, lastName, roleId, managerId]
   );
   console.log('Employee added successfully.');

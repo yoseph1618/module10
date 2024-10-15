@@ -1,18 +1,18 @@
 import query from '../../dist/connection.js';
 
 export async function viewRoles() {
-  const roles = await query(
-    `SELECT roles.id, roles.title, roles.salary, departments.name AS department
-     FROM roles
-     JOIN departments ON roles.department_id = departments.id`,
+  const role = await query(
+    `SELECT role.id, role.title, role.salary, department.name AS department
+     FROM role
+     JOIN department ON role.department_id = department.id`,
     []
   );
-  console.table(roles);
+  console.table(role);
 }
 
 export async function addRole(title, salary, departmentId) {
   await query(
-    'INSERT INTO roles (title, salary, department_id) VALUES ($1, $2, $3)',
+    'INSERT INTO role (title, salary, department_id) VALUES ($1, $2, $3)',
     [title, salary, departmentId]
   );
   console.log('Role added successfully.');

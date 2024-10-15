@@ -1,16 +1,21 @@
-CREATE TABLE departments (
+DROP DATABASE IF EXISTS tracker_db;
+CREATE DATABASE tracker_db;
+
+\c tracker_db; 
+
+CREATE TABLE department (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE roles (
+CREATE TABLE role (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   salary DECIMAL NOT NULL,
   department_id INT REFERENCES departments(id)
 );
 
-CREATE TABLE employees (
+CREATE TABLE employee (
   id SERIAL PRIMARY KEY,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
