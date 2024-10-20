@@ -13,7 +13,7 @@ const pool = new Pool({
     port: 5432
 });
 
-const connectToDb = async () => {
+const connectDb = async () => {
     try {
         const client = await pool.connect();
         console.log('Connected to company database.');
@@ -30,4 +30,4 @@ const connectToDb = async () => {
     }
 };
 
-export { pool, connectToDb };
+export { pool, connectDb };

@@ -1,5 +1,5 @@
-import { connectToDb } from './connection.js';
+import { connectDb } from './connection.js';
 import Cli from './classes/cli.js';
-await connectToDb();
+await connectDb();
 const cli = new Cli();
 cli.mainMenu();

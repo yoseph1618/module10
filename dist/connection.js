@@ -9,7 +9,7 @@ const pool = new Pool({
     database: process.env.DB_NAME,
     port: 5432
 });
-const connectToDb = async () => {
+const connectDb = async () => {
     try {
         const client = await pool.connect();
         console.log('Connected to company database.');
@@ -24,4 +24,4 @@ const connectToDb = async () => {
         process.exit(1);
     }
 };
-export { pool, connectToDb };
+export { pool, connectDb };
