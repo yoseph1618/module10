@@ -5,20 +5,29 @@ CREATE DATABASE tracker_db;
 
 CREATE TABLE department (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
+  name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE role (
   id SERIAL PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
+  title VARCHAR(255) UNIQUE NOT NULL,
   salary DECIMAL NOT NULL,
-  department_id INT REFERENCES departments(id)
+  department_id INTEGER NOT NULL,
+  FOREIGN KEY (department_id)
+  REFERENCES department(id)
+  ON DELETE CASCADE
 );
 
 CREATE TABLE employee (
   id SERIAL PRIMARY KEY,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
-  role_id INT REFERENCES roles(id),
-  manager_id INT REFERENCES employees(id) ON DELETE SET NULL
+  role_id INTEGER NOT NULL,
+  manager_id INTEGER, 
+  FOREIGN KEY (role_id)
+  REFERENCES role(id)
+  ON DELETE CASCADE,
+  FOREIGN KEY (manager_id)
+  REFERENCES employee(id)
+  ON DELETE SET NULL
 );
