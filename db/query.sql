@@ -14,6 +14,7 @@ LEFT JOIN employee m ON e.manager_id = m.id;
 INSERT INTO department (name)
 VALUES ('$1');
 
+
 SELECT * FROM department ORDER BY name ASC
 INSERT INTO role (title, salary, department_id)
 VALUES ('$1', $2, $3);
